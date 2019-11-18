@@ -102,7 +102,7 @@ class Fighter
         self::printHeader();
         foreach ($results as $result) {
             self::printRow(
-                (string) $result['id'],
+                (string) $result['_id'],
                 $result['fighter_name'],
                 $result['Height'],
                 $result['Weight'],

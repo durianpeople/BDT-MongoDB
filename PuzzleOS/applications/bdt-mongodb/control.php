@@ -3,6 +3,7 @@
 use BDT\Controller\Fighter;
 use MongoDB\Client;
 use MongoDB\Collection;
+use BDT\Controller\Converter;
 
 if (is_cli()) {
     set_time_limit(0);
@@ -43,11 +44,11 @@ if (is_cli()) {
                 $executed++;
                 $updates = [];
                 if ($args['--fighter_name']) $updates['fighter_name'] = $args['--fighter_name'];
-                if ($args['--height']) $updates['Height'] = $args['--height'];
-                if ($args['--weight']) $updates['Weight'] = $args['--weight'];
-                if ($args['--reach']) $updates['Reach'] = $args['--reach'];
+                if ($args['--height']) $updates['Height'] = Converter::cmToFeet($args['--height']);
+                if ($args['--weight']) $updates['Weight'] = Converter::kgToLb($args['--weight']);
+                if ($args['--reach']) $updates['Reach'] = Converter::cmToFeet($args['--reach'], true);
                 if ($args['--stance']) $updates['Stance'] = $args['--stance'];
-                if ($args['--dob']) $updates['DOB'] = $args['--dob'];
+                if ($args['--dob']) $updates['DOB'] = Converter::europeDateToAmerican($args['--dob']);
                 $collection->updateOne([
                     '_id' => new \MongoDB\BSON\ObjectID($args['--hash']),
                 ], [
@@ -115,6 +116,7 @@ if (is_cli()) {
             $io->out("\t update --hash [_id] (--fighter_name [string] | --height [cm]] | --weight [kg] | --reach [cm] | --stance [string] | --dob [dashed-date]: Mengubah data\n");
             $io->out("\t delete --hash [_id]: Menghapus data\n");
             $io->out("\t stance-distrib: Distribusi stance\n");
+            $io->out("\t stance-maxweight: Max berat per stance\n");
 
             $io->out("\n");
         } else $io->out("Perintah berhasil dilakukan.\n");

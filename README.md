@@ -229,6 +229,8 @@ $collection = $db->fighterCollection;
   }
   ```
 
+  ![Screenshot_20191118_214419](img/Screenshot_20191118_214419.png)
+
 - Untuk mendapatkan semua document yang memiliki value tertentu pada kolom tertentu (dalam kasus ini kolom *fighter_name*):
 
   ```php
@@ -236,6 +238,8 @@ $collection = $db->fighterCollection;
       "fighter_name" => $name,
   ]);
   ```
+
+  ![Screenshot_20191118_214630](img/Screenshot_20191118_214630.png)
 
 - Untuk memasukkan document ke dalam collection (definisikan semua nama kolom dan value-nya)
 
@@ -249,6 +253,8 @@ $collection = $db->fighterCollection;
       'DOB' => Converter::europeDateToAmerican($DOB)
   ]);
   ```
+
+  ![Screenshot_20191118_214928](img/Screenshot_20191118_214928.png)
 
 - Untuk melakukan update terhadap satu document dengan nilai kolom tertentu:
 
@@ -266,6 +272,8 @@ $collection = $db->fighterCollection;
       '$set' => $updates, // $updates merupakan array
   ]);
   ```
+
+  ![Screenshot_20191118_215608](img/Screenshot_20191118_215608.png)
 
 - Untuk menghapus satu document
 
@@ -305,4 +313,5 @@ $collection = $db->fighterCollection;
   ]);
   ```
 
-  
+  ![Screenshot_20191118_215810](img/Screenshot_20191118_215810.png)
+
