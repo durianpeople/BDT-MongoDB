@@ -254,7 +254,7 @@ $collection = $db->fighterCollection;
   ]);
   ```
 
-  ![Screenshot_20191118_214928](img/Screenshot_20191118_214928.png)
+  ![Screenshot_20191118_221623](img/Screenshot_20191118_221623.png)
 
 - Untuk melakukan update terhadap satu document dengan nilai kolom tertentu:
 
@@ -314,4 +314,3 @@ $collection = $db->fighterCollection;
   ```
 
   ![Screenshot_20191118_215810](img/Screenshot_20191118_215810.png)
-
