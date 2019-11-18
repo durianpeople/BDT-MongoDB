@@ -1,0 +1,36 @@
+# TODOS: 
+
+1. Create user jangan copas dari linode
+2. JANGAN LUPA TAMBAH SHARDING CLUSTER ROLE SHARDSVR di suatu step/tempat
+
+
+HAPUS ENTRI NAMA HOST SENDIRI
+
+192.168.33.11   mongo-config-1
+192.168.33.12   mongo-config-2
+192.168.33.13   mongo-shard-1
+192.168.33.14   mongo-shard-2
+192.168.33.15   mongo-shard-3
+192.168.33.16   mongo-query-router
+
+mongo 
+use admin 
+db.createUser( { user: "mongo-admin", pwd: "password", roles: [{role: "root", db: "admin"}] } )
+
+port: 27019
+  bindIp: IP_HOST
+replication:
+  replSetName: configReplSet
+sharding:
+  clusterRole: "configsvr"
+
+rm -rf /tmp/mongodb-27019.sock
+
+rs.initiate( { _id: "configReplSet", configsvr: true, members: [ { _id: 0, host: "mongo-config-1:27019" }, { _id: 1, host: "mongo-config-2:27019" } ] } )
+
+sharding:
+  clusterRole: "shardsvr"
+
+sh.addShard( "mongo-shard-1:27017" )
+sh.addShard( "mongo-shard-2:27017" )
+sh.addShard( "mongo-shard-3:27017" )
